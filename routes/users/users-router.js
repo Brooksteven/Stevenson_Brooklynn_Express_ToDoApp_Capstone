@@ -31,8 +31,8 @@ router.get('/seed', usersController.seedUsers) //instead of defining a callback 
 router.get('/', usersController.getUsers);
 
 
-// New
-router.get('/new', usersController.renderNewForm)
+// // New
+// router.get('/new', usersController.renderNewForm)
 
 
 // // Delete

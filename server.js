@@ -1,12 +1,12 @@
 import { config } from 'dotenv'; config(); //here we are loading .env variables into our process .env variable here. Also, into our process//this is allowing the use of environment variables coming from a .env file
-import './database/database.js' //import database connection into server.js
-import express from 'express' //this imports the express package
-import cors from 'cors';
+import './database/database.js'; //import database connection into server.js
+import express from 'express'; //this imports the express package
+import cors from 'cors'; 
 
 //import routes here
 import itemsRouter from './routes/items/items-router.js';
 import userRouter from './routes/users/users-router.js';
-import authRouter from './routes/auth/auth-router.js'
+import authRouter from './routes/auth/auth-router.js';
 
 
 const app = express() //this initializes this backend express app
