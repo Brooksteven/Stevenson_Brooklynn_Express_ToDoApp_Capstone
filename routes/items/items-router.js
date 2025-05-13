@@ -23,5 +23,30 @@ const router = express.Router();
 router.get('/seed', itemsController.seedItems) //instead of defining a callback function directly in the /seed file example: router.get('/seed', () => {}), instead we are going to do separation of concerns which is putting the callback functions in their own file instead i.e. controllers/items/items-controller.js
 
 
+///// INDUCES /////
+
+
+// Index (Step 1 when building a route) shows all items
+router.get('/', itemsController.getItems);
+
+
+// New
+router.get('/new', itemsController.renderNewForm)
+
+// // Delete
+router.delete('/:id', itemsController.deleteItem)
+
+// Update
+router.put('/:id', itemsController.updateItem); //update qty button
+
+// Create
+router.post('/', itemsController.createItem); //this is for the future for an admin adding items to the store. comment function out in controllers as well
+
+
+// Edit
+router.get('/:id', itemsController.renderEditForm);
+
+//Show
+router.get('/:id', itemsController.getItem);
 
 export default router;
