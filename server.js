@@ -9,7 +9,7 @@ import userRouter from './routes/users/users-router.js';
 import authRouter from './routes/auth/auth-router.js';
 
 
-const app = express() //this initializes this backend express app
+const app = express() //this initializes this backend express app and invokes express
 const PORT = process.env.PORT || 3001 //// This is conditional assignment. PORT conditionall is being assigned a value that comes from our PORT environment variable, if it doesn't find it, set it to 3001 instead
 
 
@@ -28,6 +28,7 @@ app.use('/auth', authRouter);
 app.get('/', (req, res) => {
     res.send('Welcome to the To Do List API!');
 });
+
 
 
 //start our server. listening on port 3000 or 3001

@@ -1,14 +1,14 @@
 //We established a connection to the database in the database  and now we are here I creating collections for the database with models
 
-import mongoose from 'mongoose'
+import mongoose from 'mongoose' //need mongoose in order to create a schema
 
 //starting with the schema
 const itemSchema = new mongoose.Schema({
     //this is what the schema will look like
-    //what rows and columns do I need for the items: name, color, size
 
     title: { type: String, required: true, lowercase: true },
     body: { type: String, required: true, lowercase: true },
+    taskComplete: Boolean
 
     //More Examples
     // email: { type: String, unique: true, required: true },
@@ -23,8 +23,8 @@ const itemSchema = new mongoose.Schema({
 
 //now that we are done creating the schema we can now finish building the model
 
-//this creates a model following the fruitSchema. With this fruit model we can now call varioous methods on it like Item.find() if you need to query for something for example: Item.find({ readyToEat: true }) or Item.findById() which manipulates the data in this collection thanks to the creation of this model
-const Item = mongoose.model('Item', itemSchema) //this needs to be a reference so put it in a variable //always capitalize the variable name here //parameter equals (name of the model/table, schema for the model to follow)
+//this creates a model following the itemSchema. With this fruit model we can now call varioous methods on it like Item.find() if you need to query for something for example: Item.find({ readyToEat: true }) or Item.findById() which manipulates the data in this collection thanks to the creation of this model
+const Item = mongoose.model('Item', itemSchema) //this needs to be a reference so put it in a variable //always capitalize the variable name here //parameter equals (name of the model/table, schema for the documents to follow, these are the fields the documents need to contain.)
 
 
 //LAST 

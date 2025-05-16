@@ -1,39 +1,47 @@
 import Item from '../../models/item/item-model.js'
 
 //this is my seed for seed route
+//asynchronous function
 async function seedItems(req, res) {
     try {
         //we need access to the model we created in /routes/items/items-router.js 'Items'
         //anytime you're interacting with the database, we need to do it asychronously by using async/await 
         //we put await here because we want to make sure that all fruits get deleted before we begin to execute anything else, WHY***?
-       await Item.deleteMany({}) //we leave the object empty so it will query for everything instead of something specific. It deletes all of the documents inside of this specific database.
+        //delete all existing items
+       await Item.deleteMany({}) //we leave the object empty so it will query for everything instead of something specific. It deletes all of the documents inside of this specific database. then create some notes below
        await Item.create(
         {
            title: 'Finances',
-           body: 'Financial meeting with John Doe Friday.'
+           body: 'Financial meeting with John Doe friday.',
+           taskComplete: true
         },
         {
             title: 'Vacation',
-            body: 'Book flight to Bermuda Thursday.'
+            body: 'Book flight to Bermuda Sunday.',
+            taskComplete: false
          },
          {
             title: 'Chores',
-            body: 'Do Laundry Wednesday.'
+            body: 'Do Laundry Wednesday.',
+            taskComplete: true
          },
          {
             title: 'Shopping',
-            body: 'Buy outfit for Jane and John babyshower by Friday.'
+            body: 'Buy outfit for Jane and John babyshower by Sunday.',
+            taskComplete: false
          },
          {
             title: 'Education',
-            body: 'Have Capstone Project due by thursday midnight.'
+            body: 'Have Capstone Project due by thursday midnight.',
+            taskComplete: true
          },
          {
             title: 'Date Night',
-            body: 'Book dinner reservation for 2 by Tuesday.'
+            body: 'Book dinner reservation for 2 by Tuesday.',
+            taskComplete: true
          }
      );
-     res.status(201).redirect('/items'); //created = 201. we redirect the user back to /items because /items is the index route where we can see all the items
+     res.status(201).redirect('/items'); //created = 201. we redirect the user back to /items because /items is the index route where we can see all the items. we have to send something back here are the browser will be inifinitely loading
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
@@ -103,27 +111,27 @@ async function getItem(req, res){
 
 // funciton for New
 //this is what renders the new.ejs file
-async function renderNewForm(req, res){
-    try {
-        //here we are rendering the form from the new.ejs file
-        // in the views folder next go inside the items folder and then render the new.ejs file
-        res.render('./items/new.ejs')
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-}
+// async function renderNewForm(req, res){
+//     try {
+//         //here we are rendering the form from the new.ejs file
+//         // in the views folder next go inside the items folder and then render the new.ejs file
+//         res.render('./items/new.ejs')
+//     } catch (error) {
+//         res.status(400).json({ error: error.message });
+//     }
+// }
 
 // funciton for Edit
 //this is what renders the new.ejs file
-async function renderEditForm(req, res){
-    try {
-        //here we are rendering the form from the new.ejs file
-        // in the views folder next go inside the items folder and then render the new.ejs file
-        res.render('./items/new.ejs')
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-}
+// async function renderEditForm(req, res){
+//     try {
+//         //here we are rendering the form from the new.ejs file
+//         // in the views folder next go inside the items folder and then render the new.ejs file
+//         res.render('./items/new.ejs')
+//     } catch (error) {
+//         res.status(400).json({ error: error.message });
+//     }
+// }
 
 
 
@@ -136,7 +144,7 @@ export {
     updateItem,
     createItem,
     deleteItem,
-    getItem,
-    renderNewForm,
-    renderEditForm
+    getItem
+    // renderNewForm,
+    // renderEditForm
 }
